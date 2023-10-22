@@ -1,6 +1,6 @@
 
 <!DOCTYPE>
-<html>
+<html lang="en">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
@@ -10,7 +10,7 @@
             $.ajax({
                     type: "POST",
                     url: "http://localhost:8080/todo/add",
-                    data: JSON.stringify({ "description": $("#description").val() }),
+                    data: JSON.stringify({ "description": $("#description").val(), "startDate": $("#startDate").val() }),
                     contentType: "application/json",
                     complete: function (data) {
                     console.log(data);
@@ -20,7 +20,7 @@
           });
         });
     </script>
-    <style type="text/css">
+    <style>
       #parallelogram {
         width: 250px;
         height: 100px;
@@ -37,6 +37,7 @@
 
 <div id="parallelogram">
   <label for="description"></label><input type="text" id="description"/>
+  <label for="startDate"></label><input type="text" id="startDate"/>
   <button>Add a record</button>
 </div>  
 
