@@ -22,8 +22,8 @@
     </script>
     <style>
       #parallelogram {
-        width: 250px;
-        height: 100px;
+        width: 500px;
+        height: 180px;
         transform: skew(-20deg);
         background: #75818b;
         margin-left: 50px;
@@ -36,9 +36,12 @@
 
 
 <div id="parallelogram">
-  <label for="description"></label><input type="text" id="description"/>
-  <label for="startDate"></label><input type="text" id="startDate"/>
-  <button>Add a record</button>
+    <label for="title"></label><input type="text" id="title"/>
+    <label for="description"></label><textarea id="description" name="description" rows="4" cols="50"></textarea>
+    <label for="startDate"></label><input type="text" id="startDate"/>
+    <label for="endDate"></label><input type="text" id="endDate"/>
+    <label for="parentId"></label><select name="parentId" id="parentId"></select>
+    <button>Add a record</button>
 </div>  
 
 </body>
