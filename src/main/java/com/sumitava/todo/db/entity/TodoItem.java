@@ -17,10 +17,13 @@ public class TodoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    private String title;
     private String description;
     @NotNull
     @JsonFormat(pattern="yyyy-MM-dd") // Used for entering date from UI. Act with @Valid in Controller.
     private Date startDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
     private Long parentId;
 
