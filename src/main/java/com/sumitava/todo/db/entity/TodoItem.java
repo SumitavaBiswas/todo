@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.sql.Blob;
 import java.util.Date;
 
 @Entity
@@ -20,7 +19,7 @@ public class TodoItem {
     private Long id;
     @NotNull
     private String title;
-    private Blob description;
+    private String description;
     @NotNull
     @JsonFormat(pattern="yyyy-MM-dd") // Used for entering date from UI. Act with @Valid in Controller.
     private Date startDate;

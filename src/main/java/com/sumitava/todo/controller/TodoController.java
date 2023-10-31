@@ -4,6 +4,7 @@ import com.sumitava.todo.db.entity.TodoItem;
 import com.sumitava.todo.services.TodoItemService;
 import com.sumitava.todo.uitls.ApiErrors;
 import jakarta.validation.Valid;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TodoController {
 
     @Autowired
+    @Setter
     private TodoItemService service;
 
     @CrossOrigin

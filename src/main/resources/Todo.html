@@ -10,7 +10,10 @@
             $.ajax({
                     type: "POST",
                     url: "http://localhost:8080/todo/add",
-                    data: JSON.stringify({ "description": $("#description").val(), "startDate": $("#startDate").val() }),
+                    data: JSON.stringify({ "description": $("#description").val(),
+                     "startDate": $("#startDate").val(),
+                     "title": $("#title").val(),
+                     "endDate": $("#endDate").val()}),
                     contentType: "application/json",
                     complete: function (data) {
                     console.log(data);
