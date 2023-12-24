@@ -7,9 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.nio.charset.StandardCharsets;
-
 import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,10 +35,20 @@ public class ControllerTest {
         addWebCall(json);
     }
 
+    @Test
+    public void testGetAllItems(){
+
+    }
+
     private static void addWebCall(String json) throws Exception {
         mockMvc.perform(post("/todo/add")
                         .contentType("application/json")
                         .content(json))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void postWebCall() throws Exception {
+        mockMvc.perform(get("/todo/getAllTodoIds")).andExpect(status().isOk()).toString();
     }
 }

@@ -5,6 +5,8 @@ import com.sumitava.todo.db.repo.TodoItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TodoItemService {
 
@@ -13,5 +15,8 @@ public class TodoItemService {
 
     public void addTodo(TodoItem todoItem){
         repo.save(todoItem);
+    }
+    public List<Integer> getAllIds(){
+        return repo.getAllIds();
     }
 }

@@ -5,7 +5,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-
           $("button").click(function(){
             $.ajax({
                     type: "POST",
@@ -20,7 +19,29 @@
                     wait = false;
                 }
             });
-          });
+          }); // End of button
+    $('#parentId').empty().append('<option>select</option>');
+    $.ajax({
+            url: 'http://localhost:8080/todo/getAllTodoIds',
+            dataType: 'json',
+            type: 'GET',
+            success: function(response) {
+              var array = response;
+              if (array != '')
+              {
+                for (i in array) {
+                 $("#parentId").append("<option>"+array[i]+"</option>");
+               }
+
+              }
+
+            },
+            error: function(x, e) {
+
+            }
+
+        });
+
         });
     </script>
     <style>
@@ -43,7 +64,12 @@
     <label for="description"></label><textarea id="description" name="description" rows="4" cols="50"></textarea>
     <label for="startDate"></label><input type="text" id="startDate"/>
     <label for="endDate"></label><input type="text" id="endDate"/>
-    <label for="parentId"></label><select name="parentId" id="parentId"></select>
+    <label for="parentId"></label>
+    <select name="parentId" id="parentId" >
+        <option id="1">One</option>
+        <option id="2">Two</option>
+        <option id="3">Three</option>
+    </select>
     <button>Add a record</button>
 </div>  
 
