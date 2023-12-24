@@ -10,10 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/todo")
@@ -33,5 +33,12 @@ public class TodoController {
         return ResponseEntity.ok("User is valid");
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/getAllTodoIds")
+    public ResponseEntity<List<Integer>> getAllTodoIds(){
+        List<Integer> ids = new ArrayList<>(service.getAllIds());
+
+        return new ResponseEntity<>(ids, HttpStatus.OK);
+    }
 
 }
