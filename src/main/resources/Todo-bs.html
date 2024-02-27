@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo</title>
+    <!--  jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
+</head>
+<body>
+
+
+<form method="post">
+
+    <div style="margin-left: 10px;">
+        <h1>Welcome to todo Application</h1>
+        <label>
+            Title
+            <input type="text" autocomplete="off"  id="title"/>
+        </label>
+        <br>
+        <label>
+            Description<br>
+            <textarea rows="15" cols="50" id="description"></textarea>
+        </label>
+        <br>
+    </div>
+    <div id="sandbox-container" style="margin-left: 10px;">
+        <label>
+            Start Date
+            <input type="text" class="form-control" size="7" autocomplete="off" id="startDate">
+        </label>
+        <label>
+            End Date
+            <input type="text" class="form-control" size="7" autocomplete="off" id="endDate">
+        </label>
+        <br>
+        <button>Save</button>
+    </div>
+</form>
+<script>
+    $('#sandbox-container input').datepicker({
+         orientation: "top left",
+         format: "yyyy-mm-dd"
+    });
+</script>
+<script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/todo/add",
+                data: JSON.stringify({ "description": $("#description").val(),
+                 "startDate": $("#startDate").val(),
+                 "title": $("#title").val(),
+                 "endDate": $("#endDate").val()}),
+                contentType: "application/json",
+                complete: function (data) {
+                console.log(data);
+                wait = false;
+            }
+        });
+      }); // End of button
+    $('#parentId').empty().append('<option>select</option>');
+    $.ajax({
+        url: 'http://localhost:8080/todo/getAllTodoIds',
+        dataType: 'json',
+        type: 'GET',
+        success: function(response) {
+          var array = response;
+          if (array != '')
+          {
+            for (i in array) {
+             $("#parentId").append("<option>"+array[i]+"</option>");
+           }
+
+          }
+
+        },
+        error: function(x, e) {
+
+        }
+
+    });
+
+    });
+</script>
+
+
+
+</body>
+</html>
